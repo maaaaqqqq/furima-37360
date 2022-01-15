@@ -1,24 +1,70 @@
-# README
+# Table 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Usersテーブル
 
-Things you may want to cover:
+| Column              | Type   | Options                     |
+| ------------------- | ------ | --------------------------- |
+| nickname            | string | null: false                 |
+| e-mail              | string | null: false, unique: true   |
+| password            | string | null: false                 |
+| last_name           | string | null: false                 |
+| first_name          | string | null: false                 |
+| last_name_katakana  | string | null: false                 |
+| first_name_katakana | string | null: false                 |
+| birthday            | date   | null: false                 |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :bought_item_records
+- has_many :deliveries
 
-* Configuration
+## Itemsテーブル
 
-* Database creation
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| name                   | string     | null: false                    |
+| description            | text       | null: false                    |
+| price                  | integer    | null: false                    |
+| category               | string     | null: false                    |
+| condition              | string     | null: false                    |
+| delivery_charge_burden | string     | null: false                    |
+| shipping_area          | string     | null: false                    |
+| days_to_ship           | string     | null: false                    |
+| user_id                | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :bought_item_record
 
-* Services (job queues, cache servers, search engines, etc.)
+## Bought_item_record
 
-* Deployment instructions
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user_id     | references | null: false, foreign_key: true |
+| item_id     | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one : delivery
+
+## Deliveries
+
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| post_code      | string     | null: false                    |
+| prefectures    | string     | null: false                    |
+| city           | string     | null: false                    |
+| address        | text       | null: false                    |
+| building_name  | string     |                                |
+| tel            | string     | null: false                    |
+| user_id        | references | null: false, foreign_key: true |
+| bought_item_id | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :bought_item_record
