@@ -5,8 +5,8 @@
 | Column              | Type   | Options                     |
 | ------------------- | ------ | --------------------------- |
 | nickname            | string | null: false                 |
-| e-mail              | string | null: false, unique: true   |
-| password            | string | null: false                 |
+| email               | string | null: false, unique: true   |
+| encrypted_password  | string | null: false                 |
 | last_name           | string | null: false                 |
 | first_name          | string | null: false                 |
 | last_name_katakana  | string | null: false                 |
@@ -17,21 +17,20 @@
 
 - has_many :items
 - has_many :bought_item_records
-- has_many :deliveries
 
 ## Itemsテーブル
 
-| Column                 | Type       | Options                        |
-| ---------------------- | ---------- | ------------------------------ |
-| name                   | string     | null: false                    |
-| description            | text       | null: false                    |
-| price                  | integer    | null: false                    |
-| category               | string     | null: false                    |
-| condition              | string     | null: false                    |
-| delivery_charge_burden | string     | null: false                    |
-| shipping_area          | string     | null: false                    |
-| days_to_ship           | string     | null: false                    |
-| user_id                | references | null: false, foreign_key: true |
+| Column                    | Type       | Options                        |
+| ------------------------- | ---------- | ------------------------------ |
+| name                      | string     | null: false                    |
+| description               | text       | null: false                    |
+| price                     | integer    | null: false                    |
+| category_id               | integer    | null: false                    |
+| condition_id              | integer    | null: false                    |
+| delivery_charge_burden_id | integer    | null: false                    |
+| shipping_area_id          | integer    | null: false                    |
+| days_to_ship_id           | integer    | null: false                    |
+| user                      | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -40,10 +39,10 @@
 
 ## Bought_item_record
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| user_id     | references | null: false, foreign_key: true |
-| item_id     | references | null: false, foreign_key: true |
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -53,18 +52,16 @@
 
 ## Deliveries
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| post_code      | string     | null: false                    |
-| prefectures    | string     | null: false                    |
-| city           | string     | null: false                    |
-| address        | text       | null: false                    |
-| building_name  | string     |                                |
-| tel            | string     | null: false                    |
-| user_id        | references | null: false, foreign_key: true |
-| bought_item_id | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| post_code          | string     | null: false                    |
+| shipping_area_id   | integer    | null: false                    |
+| city               | string     | null: false                    |
+| address            | string     | null: false                    |
+| building_name      | string     |                                |
+| tel                | string     | null: false                    |
+| bought_item_record | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :bought_item_record
