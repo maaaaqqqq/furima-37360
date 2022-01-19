@@ -21,4 +21,5 @@ class User < ApplicationRecord
   end
 
   # associationを記述
+  has_many :items
 end
