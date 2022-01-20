@@ -27,9 +27,9 @@
 | price                     | integer    | null: false                    |
 | category_id               | integer    | null: false                    |
 | condition_id              | integer    | null: false                    |
-| delivery_charge_burden_id | integer    | null: false                    |
-| shipping_area_id          | integer    | null: false                    |
-| days_to_ship_id           | integer    | null: false                    |
+| postage_id                | integer    | null: false                    |
+| prefecture_id             | integer    | null: false                    |
+| shippingdate_id           | integer    | null: false                    |
 | user                      | references | null: false, foreign_key: true |
 
 ### Association
@@ -55,7 +55,7 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | post_code          | string     | null: false                    |
-| shipping_area_id   | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
 | building_name      | string     |                                |
