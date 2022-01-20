@@ -31,7 +31,6 @@ RSpec.describe Item, type: :model do
       it 'category_idが空では保存できない' do
         @item.category_id = ''
         @item.valid?
-        # binding.pry
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'condition_idが空では保存できない' do
