@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-before_action :authenticate_user!, only: :new
+  before_action :authenticate_user!, only: :new
 
   def index
-    # @items = Item.order(id: 'DESC')
+    @items = Item.order(id: 'DESC')
   end
 
   def new
