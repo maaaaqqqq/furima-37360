@@ -98,11 +98,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 10000000')
       end
-      it 'priceの値が10000000以上では保存できない' do
-        @item.price = '10000000'
-        @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be less than 10000000')
-      end
       it 'priceの値が全角数字では保存できない' do
         @item.price = '１００００'
         @item.valid?
