@@ -20,6 +20,6 @@ class User < ApplicationRecord
     validates :first_name_katakana
   end
 
-  # associationを記述
   has_many :items
+  # has_many :bought_item_records
 end
