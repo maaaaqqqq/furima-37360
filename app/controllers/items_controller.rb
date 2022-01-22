@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.order(created_at: 'DESC')
@@ -25,10 +25,10 @@ class ItemsController < ApplicationController
   def edit
     if user_signed_in? && current_user.id == @item.user_id
       if @item.bought_item_record.present?
-        render :index
+        redirect_to root_path
       end
     else
-      render :index
+      redirect_to root_path
     end
   end
 
