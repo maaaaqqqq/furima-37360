@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :bought_item_records
+- has_many :orders
 
 ## Itemsテーブル
 
@@ -35,9 +35,9 @@
 ### Association
 
 - belongs_to :user
-- has_one :bought_item_record
+- has_one :order
 
-## Bought_item_record
+## Ordersテーブル
 
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
@@ -50,18 +50,18 @@
 - belongs_to :item
 - has_one : delivery
 
-## Deliveries
+## Deliveriesテーブル
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| post_code          | string     | null: false                    |
-| prefecture_id      | integer    | null: false                    |
-| city               | string     | null: false                    |
-| address            | string     | null: false                    |
-| building_name      | string     |                                |
-| tel                | string     | null: false                    |
-| bought_item_record | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| post_code     | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building_name | string     |                                |
+| tel           | string     | null: false                    |
+| order         | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :bought_item_record
+- belongs_to :order
