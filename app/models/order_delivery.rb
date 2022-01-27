@@ -3,10 +3,15 @@ class OrderDelivery
   attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :address, :building_name, :tel, :order_id, :token
 
   with_options presence: true do
-    validates :user_id, :item_id, :city, :address, :token
-    validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
-    validates :tel, format: { with: /\A\d{10,11}\z/ }, numericality: { only_integer: true }
+    validates :user_id
+    validates :item_id
+    validates :city
+    validates :address
+    validates :tel
+    validates :token
   end
+  validates :post_code, presence: true, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :tel, presence: true, format: { with: /\A\d{10,11}\z/ }, numericality: { only_integer: true }
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
