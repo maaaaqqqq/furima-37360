@@ -28,7 +28,7 @@ RSpec.describe OrderDelivery, type: :model do
       it 'post_codeが半角のハイフンを含んだ正しい形式でないと保存できない' do
         @order_delivery.post_code = '9999999'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@order_delivery.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'prefecture_idが空では保存できない' do
         @order_delivery.prefecture_id = ''
@@ -73,14 +73,13 @@ RSpec.describe OrderDelivery, type: :model do
       it 'telが半角ハイフン(-)を含む形では保存できない' do
         @order_delivery.tel = '999-9999-9999'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Tel is invalid", "Tel is not a number")
+        expect(@order_delivery.errors.full_messages).to include('Tel is invalid', 'Tel is not a number')
       end
       it '全角数字を含むtelは保存できない' do
         @order_delivery.tel = '９９９９９９９９９９９'
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Tel is invalid", "Tel is not a number")
+        expect(@order_delivery.errors.full_messages).to include('Tel is invalid', 'Tel is not a number')
       end
     end
   end
 end
-
