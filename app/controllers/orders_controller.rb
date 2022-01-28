@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_action, only: [:index, :new]
+  before_action :set_action, only: [:index, :create]
 
   def index
+    @order_delivery = OrderDelivery.new
     if current_user.id == @item.user_id
       redirect_to root_path
     elsif @item.order.present?
@@ -14,7 +15,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_delivery = OrderDelivery.new(order_params)
     if @order_delivery.valid?
       pay_item
@@ -44,6 +44,5 @@ class OrdersController < ApplicationController
 
   def set_action
     @item = Item.find(params[:item_id])
-    @order_delivery = OrderDelivery.new
   end
 end
