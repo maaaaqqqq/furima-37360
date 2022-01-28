@@ -36,7 +36,7 @@ RSpec.describe OrderDelivery, type: :model do
         expect(@order_delivery.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'prefecture_idの値が1では保存できない' do
-        @order_delivery.prefecture_id = '1'
+        @order_delivery.prefecture_id = 1
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include("Prefecture can't be blank")
       end
