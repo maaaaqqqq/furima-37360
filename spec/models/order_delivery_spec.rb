@@ -80,6 +80,16 @@ RSpec.describe OrderDelivery, type: :model do
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include('Tel is invalid', 'Tel is not a number')
       end
+      it 'telが9桁以下では保存できない' do
+        @order_delivery.tel = '99999999'
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include('Tel is invalid')
+      end
+      it 'telは12桁以上では保存できない' do
+        @order_delivery.tel = '999999999999'
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include('Tel is invalid')
+      end
     end
   end
 end
