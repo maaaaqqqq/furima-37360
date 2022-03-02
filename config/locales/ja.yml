@@ -19,6 +19,7 @@ ja:
         prefecture_id: 発送元の地域
         shippingdate_id: 発送までの日数
         price: 価格
+        user_id: ユーザー
 
   activemodel:
     attributes:
@@ -30,3 +31,5 @@ ja:
         token: クレジットカード情報
         prefecture_id: 都道府県
         building_name: 建物名
+        item_id: 商品
+        user_id: ユーザー
