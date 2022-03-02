@@ -9,10 +9,10 @@ class OrderDelivery
     validates :address
     validates :token
   end
-  validates :post_code, presence: true, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+  validates :post_code, presence: true, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'は無効です。 ハイフン(-)を含めて入力してください' }
   validates :tel, presence: true, format: { with: /\A\d{10,11}\z/ },
-                  numericality: { only_integer: true, message: 'is not a number' }
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+                  numericality: { only_integer: true, message: 'は無効です。' }
+  validates :prefecture_id, numericality: { other_than: 1, message: "を入力してください" }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
